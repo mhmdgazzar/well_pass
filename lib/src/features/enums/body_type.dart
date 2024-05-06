@@ -1,5 +1,5 @@
 enum BodyType {
-  Ectomorph,
-  Endomorph,
-  Mesomorph,
+  ectomorph,
+  endomorph,
+  mesomorph,
 }

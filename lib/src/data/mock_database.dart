@@ -27,7 +27,7 @@ Wallet userWallet = Wallet(
   dateOfBirth: DateTime(1990, 1, 1),
   bodyWeight: 0,
   bodyHeight: 0,
-  bodyType: BodyType.Ectomorph,
+  bodyType: BodyType.ectomorph,
   hasDiabetes: false,
   hasHypertension: false,
   hasAlzheimer: false,
