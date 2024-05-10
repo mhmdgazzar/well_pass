@@ -1,7 +1,7 @@
 import '../features/enums/body_type.dart';
 import '../features/enums/countries.dart';
 import '../features/enums/gender.dart';
-import '../features/home/domain/user.dart';
+import '../features/main_screen/domain/user.dart';
 import '../features/wallet/domain/connection.dart';
 import '../features/wallet/domain/wallet.dart';
 import 'database_repository.dart';

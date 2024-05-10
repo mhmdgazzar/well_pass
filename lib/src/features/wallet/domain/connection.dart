@@ -1,4 +1,4 @@
-import '../../home/domain/user.dart';
+import '../../main_screen/domain/user.dart';
 import 'provider.dart';
 import 'wallet.dart';
 
