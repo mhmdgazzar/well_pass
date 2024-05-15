@@ -1,5 +1,5 @@
-import '../../enums/countries.dart';
 import 'connection.dart';
+import 'countries.dart';
 
 class Provider {
   String providerID;

@@ -1,8 +1,8 @@
-import '../../enums/body_type.dart';
-import '../../enums/countries.dart';
-import '../../enums/gender.dart';
 import '../../main_screen/domain/user.dart';
+import 'body_type.dart';
 import 'connection.dart';
+import 'countries.dart';
+import 'gender.dart';
 
 class Wallet {
   User user;

@@ -1,8 +1,8 @@
-import '../features/enums/body_type.dart';
-import '../features/enums/countries.dart';
-import '../features/enums/gender.dart';
 import '../features/main_screen/domain/user.dart';
+import '../features/wallet/domain/body_type.dart';
 import '../features/wallet/domain/connection.dart';
+import '../features/wallet/domain/countries.dart';
+import '../features/wallet/domain/gender.dart';
 import '../features/wallet/domain/wallet.dart';
 import 'database_repository.dart';
 
@@ -32,8 +32,8 @@ Wallet userWallet = Wallet(
   hasHypertension: false,
   hasAlzheimer: false,
   qrCode: '',
-  firstName: '',
-  lastName: '',
+  firstName: 'Martin',
+  lastName: 'Müller',
 );
 
 class MockDatabase implements DatabaseRepository {
