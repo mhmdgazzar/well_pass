@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:well_pass/src/data/mock_database.dart';
 import 'package:well_pass/src/features/wallet/presentation/wallet.dart';
-
-import '../../bottom_navigation.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -10,7 +9,6 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 239, 238, 238),
-      bottomNavigationBar: const BottomNavBar(),
       body: SafeArea(
         top: true,
         child: Padding(
@@ -20,9 +18,9 @@ class MainScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Hello {Wallet.firstName}",
-                    style: TextStyle(
+                  Text(
+                    "Hello ${userWallet.firstName}",
+                    style: const TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 16,
                     ),
@@ -57,6 +55,7 @@ class MainScreen extends StatelessWidget {
           ),
         ),
       ),
+      //bottomNavigationBar: const BottomNavBar(),
     );
   }
 }

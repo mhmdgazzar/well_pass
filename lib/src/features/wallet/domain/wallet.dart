@@ -1,7 +1,6 @@
 import '../../main_screen/domain/user.dart';
 import 'body_type.dart';
 import 'connection.dart';
-import 'countries.dart';
 import 'gender.dart';
 
 class Wallet {
@@ -12,7 +11,7 @@ class Wallet {
   final String? walletID;
   String? photoUrl;
   Gender? gender;
-  Country? country;
+  String? country;
   String? city;
   DateTime? dateOfBirth;
   num? bodyWeight;
