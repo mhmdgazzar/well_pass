@@ -30,7 +30,7 @@ class MainScreen extends StatelessWidget {
                       IconButton(
                         style: const ButtonStyle(
                           backgroundColor:
-                              MaterialStatePropertyAll<Color>(Colors.white),
+                              WidgetStatePropertyAll<Color>(Colors.white),
                         ),
                         icon: const Icon(
                           Icons.add,
