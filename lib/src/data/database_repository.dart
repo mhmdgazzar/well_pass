@@ -6,14 +6,14 @@ abstract class DatabaseRepository {
   void attachWallet(Wallet userWallat);
 
   // Get user Wallets
-  List<Wallet>? getUserWallets();
+  Future<List<Wallet>?> getUserWallets();
 
   // Get wallet Connections
-  List<Connection>? getWalletConnections();
+  Future<List<Connection>?> getWalletConnections();
 
   // Wallet Attributes change
   void walletCityChange(String newCity);
 
   // WalletID
-  String? getWalletID();
+  Future<String?> getWalletID();
 }

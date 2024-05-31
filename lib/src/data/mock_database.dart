@@ -37,27 +37,31 @@ Wallet userWallet = Wallet(
 
 class MockDatabase implements DatabaseRepository {
   @override
-  void attachWallet(Wallet userWallet) {
+  Future<void> attachWallet(Wallet userWallet) async {
     user1.wallet = userWallet;
   }
 
   @override
-  List<Wallet>? getUserWallets() {
+  Future<List<Wallet>?> getUserWallets() async {
+    await Future.delayed(const Duration(seconds: 1));
     return user1.wallet != null ? [user1.wallet!] : null;
   }
 
   @override
-  List<Connection>? getWalletConnections() {
+  Future<List<Connection>?> getWalletConnections() async {
+    await Future.delayed(const Duration(seconds: 1));
     return userWallet.connections;
   }
 
   @override
-  void walletCityChange(String newCity) {
+  Future<void> walletCityChange(String newCity) async {
+    await Future.delayed(const Duration(seconds: 1));
     userWallet.city = newCity;
   }
 
   @override
-  String? getWalletID() {
+  Future<String?> getWalletID() async {
+    await Future.delayed(const Duration(seconds: 1));
     return user1.wallet?.walletID;
   }
 }
