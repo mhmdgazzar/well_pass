@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:well_pass/src/features/bottom_navigation.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -12,7 +13,11 @@ class AuthScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              const SizedBox(height: 64),
+              const Image(image: AssetImage('assets/images/WellPass-Logo.png')),
+              const SizedBox(height: 64),
               Form(
                 child: Column(
                   children: [
@@ -25,6 +30,20 @@ class AuthScreen extends StatelessWidget {
                       decoration: const InputDecoration(
                         labelText: "Password",
                         suffixIcon: Icon(Icons.visibility),
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    SizedBox(
+                      width: 250,
+                      child: OutlinedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const BottomNavBar()),
+                          );
+                        },
+                        child: const Text("Login"),
                       ),
                     ),
                   ],

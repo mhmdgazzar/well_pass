@@ -43,25 +43,25 @@ class MockDatabase implements DatabaseRepository {
 
   @override
   Future<List<Wallet>?> getUserWallets() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
     return user1.wallet != null ? [user1.wallet!] : null;
   }
 
   @override
   Future<List<Connection>?> getWalletConnections() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
     return userWallet.connections;
   }
 
   @override
   Future<void> walletCityChange(String newCity) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
     userWallet.city = newCity;
   }
 
   @override
   Future<String?> getWalletID() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
     return user1.wallet?.walletID;
   }
 }

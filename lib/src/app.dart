@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:well_pass/src/config/theme.dart';
-
-import 'features/bottom_navigation.dart';
+import 'package:well_pass/src/features/authentication/presentation/authentication.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -10,7 +9,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       //home: const MainScreen(),
-      home: const BottomNavBar(),
+      home: const AuthScreen(),
       theme: lightTheme,
     );
   }
