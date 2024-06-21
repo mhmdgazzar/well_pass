@@ -98,7 +98,7 @@ class Wallet extends StatelessWidget {
                         width: 8,
                       ),
                       Text(
-                        "4 Connections",
+                        "5 Connections",
                         style: TextStyle(fontSize: 10, color: Colors.grey),
                       ),
                     ],

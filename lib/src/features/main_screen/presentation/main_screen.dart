@@ -10,6 +10,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  Future<Widget>? wallet;
+
   Future<Widget> getWallet() async {
     await Future.delayed(const Duration(seconds: 2));
     return const Wallet();
@@ -59,11 +61,8 @@ class _MainScreenState extends State<MainScreen> {
                         backgroundColor:
                             WidgetStatePropertyAll<Color>(Colors.white),
                       ),
-                      onPressed: () {
-                        setState(() {
-                          getWallet();
-                        });
-                        ();
+                      onPressed: () async {
+                        await getWallet();
                       },
                       icon: const Icon(Icons.refresh)),
                 ],
@@ -79,7 +78,6 @@ class _MainScreenState extends State<MainScreen> {
                     } else if (snapshot.hasError) {
                       return Center(child: Text('Error: ${snapshot.error}'));
                     }
-
                     return const Center(child: CircularProgressIndicator());
                   },
                 ),
