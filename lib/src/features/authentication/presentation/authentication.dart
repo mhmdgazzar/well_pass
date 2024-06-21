@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:well_pass/src/data/database_repository.dart';
 import 'package:well_pass/src/features/bottom_navigation.dart';
 
 class AuthScreen extends StatefulWidget {
-  const AuthScreen({super.key});
+  final DatabaseRepository databaseRepository;
+
+  const AuthScreen(this.databaseRepository, {super.key});
 
   @override
   State<AuthScreen> createState() => _AuthScreenState();
@@ -34,7 +37,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 const SizedBox(height: 64),
                 const Image(
                   image: AssetImage(
-                    '/Users/gazzar/Downloads/dart/well_pass/assets/Wellpass_logo.png',
+                    'assets/images/Wellpass_logo.png',
                   ),
                 ),
                 const SizedBox(height: 32),
@@ -88,8 +91,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                   ? Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              const BottomNavBar()),
+                                          builder: (context) => BottomNavBar(
+                                              widget.databaseRepository)),
                                     )
                                   : () {};
                             },

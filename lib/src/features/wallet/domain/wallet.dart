@@ -1,10 +1,9 @@
-import '../../main_screen/domain/user.dart';
 import 'body_type.dart';
 import 'connection.dart';
 import 'gender.dart';
 
 class Wallet {
-  User user;
+  // User user;
   List<Connection>? connections;
   String? firstName;
   String? lastName;
@@ -23,7 +22,7 @@ class Wallet {
   String? qrCode;
 
   Wallet({
-    required this.user,
+    // required this.user,
     required this.connections,
     required this.walletID,
     required this.photoUrl,

@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:well_pass/src/data/database_repository.dart';
 import 'package:well_pass/src/data/mock_database.dart';
+import 'package:well_pass/src/features/wallet/domain/wallet.dart';
 import 'package:well_pass/src/features/wallet/presentation/wallet.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final DatabaseRepository databaseRepository;
+
+  const MainScreen(this.databaseRepository, {super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  Future<Widget>? wallet;
-
-  Future<Widget> getWallet() async {
-    await Future.delayed(const Duration(seconds: 2));
-    return const Wallet();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,19 +59,29 @@ class _MainScreenState extends State<MainScreen> {
                             WidgetStatePropertyAll<Color>(Colors.white),
                       ),
                       onPressed: () async {
-                        await getWallet();
+                        // await getWallet();
                       },
                       icon: const Icon(Icons.refresh)),
                 ],
               ),
               const SizedBox(height: 16),
-              RefreshIndicator(
-                onRefresh: getWallet,
-                child: FutureBuilder<Widget>(
-                  future: getWallet(),
+              Expanded(
+                child: FutureBuilder(
+                  future: widget.databaseRepository.getUserWallets(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return const Wallet();
+                      List<Wallet> wallets = snapshot.data!;
+                      return ListView.builder(
+                        itemCount: wallets.length,
+                        itemBuilder: (context, index) {
+                          // jedes Wallett
+                          Wallet currentWallet = wallets[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: WalletCard(currentWallet),
+                          );
+                        },
+                      );
                     } else if (snapshot.hasError) {
                       return Center(child: Text('Error: ${snapshot.error}'));
                     }

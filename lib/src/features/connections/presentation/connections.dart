@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:well_pass/src/data/database_repository.dart';
 
 class Connections extends StatelessWidget {
-  const Connections({super.key});
+  final DatabaseRepository databaseRepository;
+
+  const Connections(this.databaseRepository, {super.key});
 
   @override
   Widget build(BuildContext context) {

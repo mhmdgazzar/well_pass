@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:well_pass/src/data/mock_database.dart';
+import 'package:well_pass/src/features/wallet/domain/gender.dart';
+import 'package:well_pass/src/features/wallet/domain/wallet.dart';
 
-class Wallet extends StatelessWidget {
-  const Wallet({super.key});
+class WalletCard extends StatelessWidget {
+  final Wallet wallet;
+
+  const WalletCard(this.wallet, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class Wallet extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${userWallet.firstName} ${userWallet.lastName}",
+                    "${wallet.firstName} ${wallet.lastName}",
                     style: const TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 16,
@@ -41,7 +44,7 @@ class Wallet extends StatelessWidget {
                         width: 8,
                       ),
                       Text(
-                        "${userWallet.city}, ${userWallet.country}",
+                        "${wallet.city}, ${wallet.country}",
                         style:
                             const TextStyle(fontSize: 10, color: Colors.grey),
                       ),
@@ -60,7 +63,7 @@ class Wallet extends StatelessWidget {
                         width: 8,
                       ),
                       Text(
-                        "${userWallet.dateOfBirth?.day}. ${userWallet.dateOfBirth?.month}. ${userWallet.dateOfBirth?.year}",
+                        "${wallet.dateOfBirth?.day}. ${wallet.dateOfBirth?.month}. ${wallet.dateOfBirth?.year}",
                         style:
                             const TextStyle(fontSize: 10, color: Colors.grey),
                       ),
@@ -70,8 +73,10 @@ class Wallet extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Icon(
-                        Icons.male,
+                      Icon(
+                        wallet.gender == Gender.female
+                            ? Icons.female
+                            : Icons.male,
                         size: 16,
                         color: Colors.grey,
                       ),
@@ -79,7 +84,7 @@ class Wallet extends StatelessWidget {
                         width: 8,
                       ),
                       Text(
-                        "${userWallet.gender}",
+                        wallet.gender == Gender.female ? "Female" : "Male",
                         style:
                             const TextStyle(fontSize: 10, color: Colors.grey),
                       ),
@@ -115,7 +120,7 @@ class Wallet extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    "ID: ${userWallet.walletID}",
+                    "ID: ${wallet.walletID}",
                     style: const TextStyle(fontSize: 14, color: Colors.grey),
                   ),
                 ],

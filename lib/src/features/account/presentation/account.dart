@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:well_pass/src/data/database_repository.dart';
 import 'package:well_pass/src/features/authentication/presentation/authentication.dart';
 
 class Account extends StatelessWidget {
-  const Account({super.key});
+  final DatabaseRepository databaseRepository;
+
+  const Account(this.databaseRepository, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,8 @@ class Account extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const AuthScreen()),
+                            builder: (context) =>
+                                AuthScreen(databaseRepository)),
                       );
                     },
                     tooltip: "Logout",
