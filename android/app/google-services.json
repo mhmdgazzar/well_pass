@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "984625406508",
+    "project_id": "well-pass",
+    "storage_bucket": "well-pass.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984625406508:android:4518f419183a8f262d6789",
+        "android_client_info": {
+          "package_name": "com.example.well_pass"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9_06LBN-EYCY79ertnAA2ygOaKVJLF0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
