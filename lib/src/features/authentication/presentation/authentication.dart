@@ -18,6 +18,7 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _signUpFormKey = GlobalKey<FormState>();
   bool clickable = false;
   bool _pwdVisibility = true;
   late TextEditingController _emailController;
@@ -143,7 +144,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           onChanged: () {
                             setState(() {
                               clickable =
-                                  _loginFormKey.currentState?.validate() ??
+                                  _signUpFormKey.currentState?.validate() ??
                                       false;
                             });
                           },
@@ -188,12 +189,15 @@ class _AuthScreenState extends State<AuthScreen> {
                                 child: OutlinedButton(
                                   onPressed: () async {
                                     await widget.authRepository
-                                        .loginWithEmailAndPassword(
+                                        .signUpWithEmailAndPassword(
                                       _emailController.text,
                                       _pwController.text,
                                     );
+                                    const SnackBar(
+                                      content: Text("Sign Up Success"),
+                                    );
                                   },
-                                  child: const Text("Login"),
+                                  child: const Text("Sign Up"),
                                 ),
                               ),
                             ],
