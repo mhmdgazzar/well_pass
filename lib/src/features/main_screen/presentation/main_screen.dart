@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:well_pass/src/data/auth_repository.dart';
 import 'package:well_pass/src/data/database_repository.dart';
 import 'package:well_pass/src/data/mock_database.dart';
 import 'package:well_pass/src/features/wallet/domain/wallet.dart';
 import 'package:well_pass/src/features/wallet/presentation/wallet.dart';
 
 class MainScreen extends StatefulWidget {
+  // attributes
   final DatabaseRepository databaseRepository;
+  final AuthRepository authRepository;
 
-  const MainScreen(this.databaseRepository, {super.key});
+  const MainScreen({
+    super.key,
+    required this.databaseRepository,
+    required this.authRepository,
+  });
 
   @override
   State<MainScreen> createState() => _MainScreenState();

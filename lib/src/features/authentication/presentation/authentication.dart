@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:well_pass/src/data/auth_repository.dart';
 import 'package:well_pass/src/data/database_repository.dart';
-import 'package:well_pass/src/features/bottom_navigation.dart';
 
 class AuthScreen extends StatefulWidget {
   final DatabaseRepository databaseRepository;
+  final AuthRepository authRepository;
 
-  const AuthScreen(this.databaseRepository, {super.key});
+  const AuthScreen({
+    required this.databaseRepository,
+    super.key,
+    required this.authRepository,
+  });
 
   @override
   State<AuthScreen> createState() => _AuthScreenState();
@@ -15,10 +20,21 @@ class _AuthScreenState extends State<AuthScreen> {
   final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
   bool clickable = false;
   bool _pwdVisibility = true;
+  late TextEditingController _emailController;
+  late TextEditingController _pwController;
 
   @override
   void initState() {
     super.initState();
+    _emailController = TextEditingController();
+    _pwController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _pwController.dispose();
+    super.dispose();
   }
 
   @override
@@ -56,6 +72,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         TextFormField(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: validateEmail,
+                          controller: _emailController,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
@@ -69,6 +86,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         TextFormField(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: validatePwd,
+                          controller: _pwController,
                           obscureText: _pwdVisibility,
                           decoration: InputDecoration(
                             border: const OutlineInputBorder(),
@@ -86,15 +104,12 @@ class _AuthScreenState extends State<AuthScreen> {
                         SizedBox(
                           width: 250,
                           child: OutlinedButton(
-                            onPressed: () {
-                              clickable
-                                  ? Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => BottomNavBar(
-                                              widget.databaseRepository)),
-                                    )
-                                  : () {};
+                            onPressed: () async {
+                              await widget.authRepository
+                                  .loginWithEmailAndPassword(
+                                _emailController.text,
+                                _pwController.text,
+                              );
                             },
                             child: const Text("Login"),
                           ),
@@ -109,11 +124,6 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }
 
