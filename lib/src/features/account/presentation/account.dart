@@ -36,7 +36,9 @@ class Account extends StatelessWidget {
                       backgroundColor:
                           WidgetStatePropertyAll<Color>(Colors.white),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      authRepository.logOut();
+                    },
                     tooltip: "Logout",
                     icon: const Icon(
                       Icons.logout,

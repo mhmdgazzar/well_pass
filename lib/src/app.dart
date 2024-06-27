@@ -3,7 +3,7 @@ import 'package:well_pass/src/config/theme.dart';
 import 'package:well_pass/src/data/auth_repository.dart';
 import 'package:well_pass/src/data/database_repository.dart';
 import 'package:well_pass/src/features/authentication/presentation/authentication.dart';
-import 'package:well_pass/src/features/main_screen/presentation/main_screen.dart';
+import 'package:well_pass/src/features/bottom_navigation.dart';
 
 class App extends StatelessWidget {
   // attributes
@@ -35,7 +35,7 @@ class App extends StatelessWidget {
                     databaseRepository: databaseRepository,
                     authRepository: authRepository,
                   )
-                : MainScreen(
+                : BottomNavBar(
                     databaseRepository: databaseRepository,
                     authRepository: authRepository,
                   ),
