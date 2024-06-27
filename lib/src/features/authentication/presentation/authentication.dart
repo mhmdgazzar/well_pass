@@ -41,112 +41,197 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 239, 238, 238),
-        body: SafeArea(
-          top: true,
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const SizedBox(height: 64),
-                const Image(
-                  image: AssetImage(
-                    'assets/images/Wellpass_logo.png',
-                  ),
-                ),
-                const SizedBox(height: 32),
-                Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Form(
-                    key: _loginFormKey,
-                    onChanged: () {
-                      setState(() {
-                        clickable =
-                            _loginFormKey.currentState?.validate() ?? false;
-                      });
-                    },
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: validateEmail,
-                          controller: _emailController,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                            ),
-                            labelText: "Email",
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        TextFormField(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: validatePwd,
-                          controller: _pwController,
-                          obscureText: _pwdVisibility,
-                          decoration: InputDecoration(
-                            border: const OutlineInputBorder(),
-                            labelText: "Password",
-                            suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _pwdVisibility = !_pwdVisibility;
-                                  });
-                                },
-                                icon: const Icon(Icons.visibility)),
-                          ),
-                        ),
-                        const SizedBox(height: 32),
-                        SizedBox(
-                          width: 250,
-                          child: OutlinedButton(
-                            onPressed: () async {
-                              await widget.authRepository
-                                  .loginWithEmailAndPassword(
-                                _emailController.text,
-                                _pwController.text,
-                              );
-                            },
-                            child: const Text("Login"),
-                          ),
-                        ),
-                      ],
+      child: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          backgroundColor: const Color.fromARGB(255, 239, 238, 238),
+          body: SafeArea(
+            top: true,
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 64),
+                  const Image(
+                    image: AssetImage(
+                      'assets/images/Wellpass_logo.png',
                     ),
                   ),
-                )
-              ],
+                  const SizedBox(height: 32),
+                  const TabBar(
+                    tabs: [
+                      Tab(
+                        text: 'Login',
+                      ),
+                      Tab(
+                        text: 'Signup',
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                      child: TabBarView(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: Form(
+                          key: _loginFormKey,
+                          onChanged: () {
+                            setState(() {
+                              clickable =
+                                  _loginFormKey.currentState?.validate() ??
+                                      false;
+                            });
+                          },
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: validateEmail,
+                                controller: _emailController,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(8),
+                                    ),
+                                  ),
+                                  labelText: "Email",
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: validatePwd,
+                                controller: _pwController,
+                                obscureText: _pwdVisibility,
+                                decoration: InputDecoration(
+                                  border: const OutlineInputBorder(),
+                                  labelText: "Password",
+                                  suffixIcon: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          _pwdVisibility = !_pwdVisibility;
+                                        });
+                                      },
+                                      icon: const Icon(Icons.visibility)),
+                                ),
+                              ),
+                              const SizedBox(height: 32),
+                              SizedBox(
+                                width: 250,
+                                child: OutlinedButton(
+                                  onPressed: () async {
+                                    await widget.authRepository
+                                        .loginWithEmailAndPassword(
+                                      _emailController.text,
+                                      _pwController.text,
+                                    );
+                                  },
+                                  child: const Text("Login"),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(24),
+                        child: Form(
+                          key: _loginFormKey,
+                          onChanged: () {
+                            setState(() {
+                              clickable =
+                                  _loginFormKey.currentState?.validate() ??
+                                      false;
+                            });
+                          },
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: validateEmail,
+                                controller: _emailController,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(8),
+                                    ),
+                                  ),
+                                  labelText: "Email",
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: validatePwd,
+                                controller: _pwController,
+                                obscureText: _pwdVisibility,
+                                decoration: InputDecoration(
+                                  border: const OutlineInputBorder(),
+                                  labelText: "Password",
+                                  suffixIcon: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          _pwdVisibility = !_pwdVisibility;
+                                        });
+                                      },
+                                      icon: const Icon(Icons.visibility)),
+                                ),
+                              ),
+                              const SizedBox(height: 32),
+                              SizedBox(
+                                width: 250,
+                                child: OutlinedButton(
+                                  onPressed: () async {
+                                    await widget.authRepository
+                                        .loginWithEmailAndPassword(
+                                      _emailController.text,
+                                      _pwController.text,
+                                    );
+                                  },
+                                  child: const Text("Login"),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  )),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
   }
-}
 
-String? validatePwd(String? input) {
-  if (input == null || input.isEmpty) {
-    return "Passwort kann nicht leer sein";
-  } else if (input.length < 8) {
-    return "Passwort muss minimum 8 Zeichen lang sein";
-  } else {
-    return null;
+  String? validatePwd(String? input) {
+    if (input == null || input.isEmpty) {
+      return "Passwort kann nicht leer sein";
+    } else if (input.length < 8) {
+      return "Passwort muss minimum 8 Zeichen lang sein";
+    } else {
+      return null;
+    }
   }
-}
 
-bool validateEmailFn(String email) {
-  final emailRegex = RegExp(
-      r"[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}");
-  return emailRegex.hasMatch(email);
-}
+  bool validateEmailFn(String email) {
+    final emailRegex = RegExp(
+        r"[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}");
+    return emailRegex.hasMatch(email);
+  }
 
-String? validateEmail(String? input) {
-  if (validateEmailFn(input!) || input.isEmpty) {
-    return null;
-  } else {
-    return "Bitte eine valide E-Mail-Adresse eingeben";
+  String? validateEmail(String? input) {
+    if (validateEmailFn(input!) || input.isEmpty) {
+      return null;
+    } else {
+      return "Bitte eine valide E-Mail-Adresse eingeben";
+    }
   }
 }
