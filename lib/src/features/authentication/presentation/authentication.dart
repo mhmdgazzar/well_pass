@@ -140,7 +140,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       Padding(
                         padding: const EdgeInsets.all(24),
                         child: Form(
-                          key: _loginFormKey,
+                          key: _signUpFormKey,
                           onChanged: () {
                             setState(() {
                               clickable =
@@ -188,13 +188,16 @@ class _AuthScreenState extends State<AuthScreen> {
                                 width: 250,
                                 child: OutlinedButton(
                                   onPressed: () async {
+                                    const SnackBar(
+                                      content: Text("Account erstellt"),
+                                    );
                                     await widget.authRepository
                                         .signUpWithEmailAndPassword(
                                       _emailController.text,
                                       _pwController.text,
                                     );
                                     const SnackBar(
-                                      content: Text("Sign Up Success"),
+                                      content: Text("Account erstellt"),
                                     );
                                   },
                                   child: const Text("Sign Up"),
