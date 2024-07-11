@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:well_pass/src/config/theme.dart';
 import 'package:well_pass/src/data/auth_repository.dart';
-import 'package:well_pass/src/data/database_repository.dart';
 import 'package:well_pass/src/features/authentication/presentation/authentication.dart';
 import 'package:well_pass/src/features/bottom_navigation.dart';
 
 class App extends StatelessWidget {
   // attributes
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
 
   // constructor
   const App({
     super.key,
-    required this.databaseRepository,
-    required this.authRepository,
   });
 
   // methods
@@ -25,20 +21,12 @@ class App extends StatelessWidget {
     const mainScreenKey = ValueKey('mainScreen');
 
     return StreamBuilder(
-        stream: authRepository.authStateChanges(),
+        stream: context.read<AuthRepository>().authStateChanges(),
         builder: (context, snapshot) {
           final user = snapshot.data;
           return MaterialApp(
             key: user == null ? loginKey : mainScreenKey,
-            home: user == null
-                ? AuthScreen(
-                    databaseRepository: databaseRepository,
-                    authRepository: authRepository,
-                  )
-                : BottomNavBar(
-                    databaseRepository: databaseRepository,
-                    authRepository: authRepository,
-                  ),
+            home: user == null ? const AuthScreen() : const BottomNavBar(),
             theme: lightTheme,
           );
         });

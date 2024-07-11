@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:well_pass/src/data/auth_repository.dart';
-import 'package:well_pass/src/data/database_repository.dart';
 
 class AuthScreen extends StatefulWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
-
   const AuthScreen({
-    required this.databaseRepository,
     super.key,
-    required this.authRepository,
   });
 
   @override
@@ -124,11 +119,12 @@ class _AuthScreenState extends State<AuthScreen> {
                                 width: 250,
                                 child: OutlinedButton(
                                   onPressed: () async {
-                                    await widget.authRepository
+                                    await context
+                                        .read<AuthRepository>()
                                         .loginWithEmailAndPassword(
-                                      _emailController.text,
-                                      _pwController.text,
-                                    );
+                                          _emailController.text,
+                                          _pwController.text,
+                                        );
                                   },
                                   child: const Text("Login"),
                                 ),
@@ -191,11 +187,12 @@ class _AuthScreenState extends State<AuthScreen> {
                                     const SnackBar(
                                       content: Text("Account erstellt"),
                                     );
-                                    await widget.authRepository
+                                    await context
+                                        .read<AuthRepository>()
                                         .signUpWithEmailAndPassword(
-                                      _emailController.text,
-                                      _pwController.text,
-                                    );
+                                          _emailController.text,
+                                          _pwController.text,
+                                        );
                                     const SnackBar(
                                       content: Text("Account erstellt"),
                                     );

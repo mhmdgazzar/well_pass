@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:well_pass/src/data/auth_repository.dart';
-import 'package:well_pass/src/data/database_repository.dart';
 import 'package:well_pass/src/features/account/presentation/account.dart';
 import 'package:well_pass/src/features/connections/presentation/connections.dart';
 import 'package:well_pass/src/features/main_screen/presentation/main_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
-
-  const BottomNavBar(
-      {required this.databaseRepository,
-      super.key,
-      required this.authRepository});
+  const BottomNavBar({
+    super.key,
+  });
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -24,18 +18,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: [
-        MainScreen(
-          databaseRepository: widget.databaseRepository,
-          authRepository: widget.authRepository,
-        ),
-        Connections(
-          databaseRepository: widget.databaseRepository,
-          authRepository: widget.authRepository,
-        ),
-        Account(
-          databaseRepository: widget.databaseRepository,
-          authRepository: widget.authRepository,
-        )
+        const MainScreen(),
+        const Connections(),
+        const Account(),
       ][currentPageIndex],
       bottomNavigationBar: NavigationBar(
         destinations: const [

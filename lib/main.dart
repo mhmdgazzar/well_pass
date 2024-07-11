@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:well_pass/firebase_options.dart';
 import 'package:well_pass/src/app.dart';
 import 'package:well_pass/src/data/auth_repository.dart';
@@ -14,14 +15,23 @@ Future<void> main() async {
   );
 
   // database
-  DatabaseRepository mockDB = MockDatabase();
+  DatabaseRepository databaseRepository = MockDatabase();
 
   // authentication
   AuthRepository authRepository = AuthRepository(FirebaseAuth.instance);
 
   // run App
-  runApp(App(
-    databaseRepository: mockDB,
-    authRepository: authRepository,
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        Provider<DatabaseRepository>(
+          create: (_) => databaseRepository,
+        ),
+        Provider<AuthRepository>(
+          create: (_) => authRepository,
+        ),
+      ],
+      child: const App(),
+    ),
+  );
 }

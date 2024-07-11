@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:well_pass/src/data/auth_repository.dart';
-import 'package:well_pass/src/data/database_repository.dart';
 
 class Connections extends StatelessWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
-
-  const Connections(
-      {required this.databaseRepository,
-      super.key,
-      required this.authRepository});
+  const Connections({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

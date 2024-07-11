@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:well_pass/src/data/auth_repository.dart';
-import 'package:well_pass/src/data/database_repository.dart';
 
 class Account extends StatelessWidget {
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
-
-  const Account(
-      {super.key,
-      required this.authRepository,
-      required this.databaseRepository});
+  const Account({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +33,7 @@ class Account extends StatelessWidget {
                           WidgetStatePropertyAll<Color>(Colors.white),
                     ),
                     onPressed: () {
-                      authRepository.logOut();
+                      context.read<AuthRepository>().logOut();
                     },
                     tooltip: "Logout",
                     icon: const Icon(

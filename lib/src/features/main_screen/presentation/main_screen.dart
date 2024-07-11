@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:well_pass/src/data/auth_repository.dart';
+import 'package:provider/provider.dart';
 import 'package:well_pass/src/data/database_repository.dart';
 import 'package:well_pass/src/data/mock_database.dart';
 import 'package:well_pass/src/features/wallet/domain/wallet.dart';
@@ -7,13 +7,10 @@ import 'package:well_pass/src/features/wallet/presentation/wallet.dart';
 
 class MainScreen extends StatefulWidget {
   // attributes
-  final DatabaseRepository databaseRepository;
-  final AuthRepository authRepository;
 
+  // constructor
   const MainScreen({
     super.key,
-    required this.databaseRepository,
-    required this.authRepository,
   });
 
   @override
@@ -74,7 +71,7 @@ class _MainScreenState extends State<MainScreen> {
               const SizedBox(height: 16),
               Expanded(
                 child: FutureBuilder(
-                  future: widget.databaseRepository.getUserWallets(),
+                  future: context.read<DatabaseRepository>().getUserWallets(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       List<Wallet> wallets = snapshot.data!;
