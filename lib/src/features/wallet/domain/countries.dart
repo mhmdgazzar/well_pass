@@ -244,4 +244,10 @@ enum Country {
   final String name;
 
   const Country(this.name);
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+    };
+  }
 }

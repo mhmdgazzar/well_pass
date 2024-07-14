@@ -1,9 +1,10 @@
+import '../../main_screen/domain/user.dart';
 import 'body_type.dart';
 import 'connection.dart';
 import 'gender.dart';
 
 class Wallet {
-  // User user;
+  User user;
   List<Connection>? connections;
   String? firstName;
   String? lastName;
@@ -22,7 +23,7 @@ class Wallet {
   String? qrCode;
 
   Wallet({
-    // required this.user,
+    required this.user,
     required this.connections,
     required this.walletID,
     required this.photoUrl,
@@ -39,7 +40,50 @@ class Wallet {
     required this.qrCode,
     required this.firstName,
     required this.lastName,
-  }) {
-    // Function body
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'user': user.toMap(),
+      'connections': connections!.map((x) => x.toMap()).toList(),
+      'walletID': walletID,
+      'photoUrl': photoUrl,
+      'gender': gender!.index,
+      'country': country,
+      'city': city,
+      'dateOfBirth': dateOfBirth,
+      'bodyWeight': bodyWeight,
+      'bodyHeight': bodyHeight,
+      'bodyType': bodyType!.index,
+      'hasDiabetes': hasDiabetes,
+      'hasHypertension': hasHypertension,
+      'hasAlzheimer': hasAlzheimer,
+      'qrCode': qrCode,
+      'firstName': firstName,
+      'lastName': lastName,
+    };
+  }
+
+  factory Wallet.fromMap(Map<String, dynamic> map) {
+    return Wallet(
+      user: User.fromMap(map['user']),
+      connections: List<Connection>.from(
+          map['connections']?.map((x) => Connection.fromMap(x))),
+      walletID: map['walletID'],
+      photoUrl: map['photoUrl'],
+      gender: Gender.values[map['gender']!],
+      country: map['country'],
+      city: map['city'],
+      dateOfBirth: map['dateOfBirth'],
+      bodyWeight: map['bodyWeight'],
+      bodyHeight: map['bodyHeight'],
+      bodyType: BodyType.values[map['bodyType']!],
+      hasDiabetes: map['hasDiabetes'],
+      hasHypertension: map['hasHypertension'],
+      hasAlzheimer: map['hasAlzheimer'],
+      qrCode: map['qrCode'],
+      firstName: map['firstName'],
+      lastName: map['lastName'],
+    );
   }
 }

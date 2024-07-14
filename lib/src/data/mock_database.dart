@@ -16,7 +16,7 @@ User user1 = User(
 
 // User wallet
 Wallet userWallet = Wallet(
-  // user: user1,
+  user: user1,
   connections: [],
   walletID: '7676465MFDFG546',
   photoUrl: '',
@@ -47,7 +47,7 @@ class MockDatabase implements DatabaseRepository {
     await Future.delayed(const Duration(seconds: 2));
     return [
       Wallet(
-        // user: user1,
+        user: user1,
         connections: [],
         walletID: '7676465MFDFG546',
         photoUrl: '',
@@ -66,7 +66,7 @@ class MockDatabase implements DatabaseRepository {
         lastName: 'Müller',
       ),
       Wallet(
-        // user: user1,
+        user: user1,
         connections: [],
         walletID: '123',
         photoUrl: '',
@@ -85,7 +85,7 @@ class MockDatabase implements DatabaseRepository {
         lastName: 'Müller',
       ),
       Wallet(
-        // user: user1,
+        user: user1,
         connections: [],
         walletID: '123',
         photoUrl: '',
